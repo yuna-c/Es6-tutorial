@@ -11,6 +11,6 @@ console.log(objects[1]);
 //배열 내장함수 push
 objects.push({
     name : '멍뭉이'
-});
+}, 'aaa');
 
 console.log(objects);
