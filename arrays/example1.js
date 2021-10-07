@@ -27,8 +27,9 @@ const superhroes = [
 
 // 4 forEach
 console.log(superhroes);
+superhroes.push('헐크', '비전');
+console.log(superhroes);
 
 superhroes.forEach((hero) => {
-    superhroes.push('헐크', '비전');
     console.log(hero);
  });

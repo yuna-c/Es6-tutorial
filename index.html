@@ -762,70 +762,128 @@ console.log(biggerThanThree(numbers)); // [4, 5, 6, 7]
             <ul class="code-list">
                 <li><a href="arrays/example1.js" target="_blank">forEach</a></li>
                 <li><a href="arrays/example2.js" target="_blank">map</a></li>
+                <li><a href="arrays/example3.js" target="_blank">indexOf, findIndex, find</a></li>
+                <li><a href="arrays/example4.js" target="_blank">fillter</a></li>
+                <li><a href="arrays/example5.js" target="_blank">splice</a></li>
+                <li><a href="arrays/example6.js" target="_blank">slice</a></li>
+                <li><a href="arrays/example7.js" target="_blank">shift</a></li>
+                <li><a href="arrays/example8.js" target="_blank">pop</a></li>
+                <li><a href="arrays/example9.js" target="_blank">unshift</a></li>
+                <li><a href="arrays/example10.js" target="_blank">push</a></li>
+                <li>push(맨 뒤 원소 추가) pop(맨 뒤 원소 제거) . unshift(맨 앞 원소 추가) shift(맨 앞 원소 제거)</li>
+                <li><a href="arrays/example11.js" target="_blank">concat</a></li>
+                <li><a href="arrays/example12.js" target="_blank">join</a></li>
+                <li><a href="arrays/example13.js" target="_blank">reduce</a></li>
+                <li><a href="arrays/example14.js" target="_blank">reduce example</a></li>
             </ul>
         </div>
         <pre>
             <code>
 // 1 forEach
-const superhroes = [
-    '아이언맨',
-    '캡틴 아메리카',
-    '토르',
-    '닥터 스트레인지',
-    '블랙 위도우'
-]
-
-//1
-// for(let i = 0; i < superhroes.length; i++){
-//     console.log(superhroes[i]);
-// }
-
-
-//2
-// function print(hero) {
-//     console.log(hero);
-// }
-// superhroes.forEach(print);
-
-
-//3
-// superhroes.forEach(function(hero) {
-//    console.log(hero);
-// });
-
-
-//4 forEach
-console.log(superhroes);
-
-superhroes.forEach((hero) => {
-    superhroes.push('헐크', '비전');
-    console.log(hero);
- });
+$ node example1.js
+[ '아이언맨', '캡틴 아메리카', '토르', '닥터 스트레인지', '블랙 위도우' ]
+[ '아이언맨', '캡틴 아메리카', '토르', '닥터 스트레인지', '블랙 위도우', '헐크', '비전' ]
+아이언맨
+캡틴 아메리카
+토르
+닥터 스트레인지
+블랙 위도우
+헐크
+비전
 
 
 
 // 2 map
-const array = [1,2,3,4,5,6,7,8];
+$ node example2.js
+[
+   1,  4,  9, 16,
+  25, 36, 49, 64
+]
+[ 'hello', 'bye' ]
 
-//1
-// const squared = []; // 빈배열
-// for(let i = 0; i < array.length; i++){
-//    squared.push(array[i] * array[i]);
-// }
 
 
-//2
-// const squared = []; // 빈배열
-// array.forEach(n => {
-//     squared.push(n * n);
-// })
+// 3 indexOf, findIndex, find
+$ node example3.js
+3
+1
+text : 1 번째, done : 3번째, ID : 3 object
+{ id: 1, text: '자바스크립트 입문', done: true }
 
-//3 map
-const square = n => n * n; //n을 파라미터로 받아와서 
-const squared = array.map(square);
 
-console.log(squared);
 
+// 4 fillter
+// fillter : 특정 조건을 만족하는 원소들을 찾아서, 그 원소들을 가지고 새로운 배열을 만드는 것
+$ node example4.js
+[ { id: 4, text: '배열 내장함수 배우기', done: false } ]
+[
+  { id: 1, text: '자바스크립트 입문', done: true },
+  { id: 2, text: '함수 배우기', done: true },
+  { id: 3, text: '객체와 배열 배우기', done: true }
+]
+
+
+
+// 5 splice
+$ node example5.js
+//splice = 배열에서 특정 항목을 제거할 때 사용(해당 원소가 몇번째인지 명시)
+[ 30 ]
+[ 10, 20 ]
+
+
+
+// 6 slice
+$ node example6.js
+//slice : 기존의 배열을 건드리지않고 파라미터에 넣는 값도 다르다, 배열을 찾아낼 때 사용
+[ 10, 20 ]
+[ 10, 20, 30, 40 ]
+
+
+
+// 7 shift
+$ node example7.js
+// shift : 배열의 첫번째 원소를 추출 => 비워져 있을 때까지 빠짐
+10
+[ 20, 30, 40 ]
+
+
+
+// 8 pop
+$ node example8.js
+// pop : 맨 끝자리 원소를 찾아서 빼줌
+40
+[ 10, 20, 30 ]
+
+
+
+// 9 unshift
+$ node example9.js
+// unshift : 원소의 맨 앞에 요소를 추가
+[ 5, 10, 20, 30, 40 ]
+
+
+
+// 10 push
+$ node example10.js
+// push : 맨 뒤에 원소 추가
+[ 10, 20, 30, 40, 50 ]
+
+
+
+// 11 concat
+// concat : 여러개의 배열을 하나의 배열로 합쳐주는 역할
+$ node example11.js
+[ 1, 2, 3 ]
+[ 4, 5, 6 ]
+[ 1, 2, 3, 4, 5, 6 ]
+
+
+// 12 join
+// join : 배열 안에 있는 값들을 문자열 형태로 합쳐 줄 때 사용한다
+$ node example12.js
+1,2,3,4,5,6
+1파라미터2파라미터3파라미터4파라미터5파라미터6
+1, 2, 3, 4, 5, 6
             </code>
         </pre>
 <!-- 
