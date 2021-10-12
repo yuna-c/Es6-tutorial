@@ -3,8 +3,8 @@
 함수를 통해 새로운 객체를 만들고,
 그 안에 넣고싶은 값, 또는 함수를 구현할 수 있게 해줍니다.
 */
-
-function Animal(type, name, sound, gender) {
+// 객체 생성자를 만들때는 함수이름을 대문자로 한다
+function Animal(type, name, sound, gender) { //파라미터
     this.type = type;
     this.name = name;
     this.sound = sound;
@@ -26,9 +26,9 @@ Animal.prototype.symbol = function(){
 Animal.prototype.shareValue = 1;
 
 //객체 생성자를 통해 새로운 객체를 만들 때는 new라는 키워드로 만든다.
-const dog = new Animal('개', '멍멍이', '멍멍', '암컷');
-const cat = new Animal('고양이', '냐옹이', '냐옹', '수컷');
-const chipmunk = new Animal('다람쥐', '다람이', '찍찍', '암컷');
+const dog = new Animal('개', '멍멍이', '멍멍', '여자');
+const cat = new Animal('고양이', '냐옹이', '냐옹', '남자');
+const chipmunk = new Animal('다람쥐', '다람이', '찍찍', '여자');
 
 //모든 Animal에게 이 함수를 사용하게 하자
 /*
