@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알고있으면 유용한 자바스크립트 문법</title>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <h1>알고있으면 유용한 자바스크립트 문법</h1>
+
+        <div class="code-info">
+            <h2><strong>삼항연산자</strong></h2>
+            <ul class="code-list">
+                <li>condition ? true : false</li>
+                <li>조건이 true가 되면 전체가 true, 아니면 false</li>
+                <li><a href="grammar/example1.js" target="_blank">example1</a></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+삼항 연산자
+//condition ? true : false
+//condition ? hello : bye
+
+
+const array = [1, 2, 3, 4];
+let test = '';
+// if(array.length === 0){
+//     text = '배열이 비어있습니다.';
+// } else {
+//     text = '배열이 비어있지 않습니다.';
+// }
+
+let text = array.length === 0 
+    ? '배열이 비어있습니다!' 
+    : '배열이 비어있지 않습니다!'
+console.log(text);
+
+
+// 비추천
+const condition1 = false;
+const condition2 = false;
+
+const value = condition1
+    ? '와우!'
+    : condition2 
+    ? 'blabla'
+    : 'foo'
+
+console.log(value);
+            </code>
+        </pre>
+
+        <div class="code-info">
+            <h2><strong>Truthy and Falsy</strong></h2>
+            <ul class="code-list">
+                <li>Falsy : undefined, null, 0, '', NaN </li>
+                <li><a href="grammar/example2.js" target="_blank">example2</a></li>
+                <li><a href="grammar/example3.js" target="_blank">example3</a></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+// falsy
+console.log(!undefined); //undefined, null => falsy한 값으로 간주
+console.log(!null);
+console.log(!0); // 0이 아닌 값
+console.log(!''); // 빈문자
+console.log(!NaN);  // not a number 
+console.log(!false);
+
+
+// truthy
+console.log(!3);
+console.log(!'hello');
+console.log(!['array']); // 배열
+console.log(![]); // 빈배열
+console.log(!{}); // 객체
+
+
+const value = undefined/*{ a : 1 } , null*/;
+
+// if (value) {
+//     console.log('value가 Truthy하네요.');
+// }
+
+// const truthy = value ? true : false;
+const truthy = !!value;
+console.log(truthy);
+
+
+            </code>
+        </pre>
+
+        <div class="code-info">
+            <h2><strong>Short-circuit evaluation</strong></h2>
+            <ul class="code-list">
+                <li>단축 평가 논리 계산법 : 논리 연산자를 통해서 코드를 더 짧게 쓰는 것</li>
+                <li><a href="grammar/example4.js" target="_blank">and</a></li>
+                <li><a href="grammar/example5.js" target="_blank">and</a></li>
+                <li><a href="grammar/example6.js" target="_blank">or</a></li>
+                <li><a href="grammar/example7.js" target="_blank">or</a></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+true && true // true and
+true && false // false
+true || false // true or
+false || true // true
+
+// 논리 연산자는 true/false만으로 나뉘지 않는다 !(not) false
+
+const dog = {
+    name : '멍멍이'
+};
+
+const cat = {
+    name : '고양이'
+}
+
+function getName(animal) {
+    // if(animal) {
+    //     return animal.name;
+    // }
+    // return undefined;
+
+    // 단축 방법
+    return animal && animal.name; 
+}
+
+const name = getName(cat); //dog 값이 있을 때는 멍멍이가, 없을 때는 undefind가 나온다
+console.log(name);
+
+
+//example
+
+console.log(true && 'hello'); // and 연산자의 앞에 나오는게 true라면 연산 결과는 뒤에오는 게 되는 것이다 (true X = hello Y)
+console.log(false && 'hello'); // 앞에 오는게 false라면 뒤에오는걸 보지도 않고 false를 return 한다
+console.log('hello' && 'bye'); //bye because hello = truthy한 값
+
+// and 연산자는 앞에 있는 값이 truty한 값이나 true면 뒤에있는 값이오고, 앞에 있는 값이 falsy하면 어림도없다
+// falsy한 값
+console.log(null && 'hello'); // null 
+console.log(undefined && 'hello'); // undefined
+console.log('' && 'hello');
+console.log(0 && 'hello');
+
+console.log(1 && 'hello');
+console.log(1 && 1);
+
+
+
+const object = { name : 'dfdfd' }; // { name : 1 } null
+// 객체일수도 객체가 아닐 수도 있는 상황이라면
+const name = object && object.name; //에러 안나고 실행이됨
+console.log(name);
+
+
+// null and ㅇㄹㄴ아릴
+              
+
+// or 연산자 : 어떤 값이 falsy하다면 대체로 사용할 값을 지정해 줄 때,
+// const namelessDog = {
+//     name : '',
+// }
+
+// function getName(animal) {
+//     const name = animal && animal.name;
+//     // if(!name) {
+//     //     return '이름이 없는 동물입니다.';
+//     // }
+//     // return name;
+//     return name || '이름이 없는 동물입니다.';
+
+// }
+
+// const name = getName(namelessDog)
+// console.log(name);
+
+const namelessDog = {
+    name : '뭉뭉이',
+}
+
+function getName(animal){
+    const name = animal && animal.name;
+    if(!name ){ 
+        return '이름이 없는 동물입니다';
+    }
+    return name;
+}
+
+const name = getName(namelessDog);
+console.log(name);
+
+
+
+// or
+console.log(false || 'hello'); // falsy하거나 false이면 뒤의 값을 추출
+console.log('' || '이름없다');
+console.log(null || '널이다');
+console.log(undefined || 'defined 되지 않았다');
+console.log(0 || '영은 false');
+console.log(NaN || 'not a number');
+
+
+console.log(1 || '음?'); //1 
+console.log(true || '여기 안본다');
+console.log('와아' || '여기 안본다');
+console.log([] || '배열');
+
+            </code>
+        </pre>
+
+        <div class="code-info">
+            <h2><strong>함수의 기본 파라미터</strong></h2>
+            <ul class="code-list">
+                <li></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+            </code>
+        </pre>
+<!-- 
+    <div class="code-info">
+        <h2><strong></strong></h2>
+        <ul class="code-list">
+            <li></li>
+        </ul>
+    </div>
+    <pre>
+        <code>
+        </code>
+    </pre>
+-->
+
+    </div>
+</body>
+</html>
