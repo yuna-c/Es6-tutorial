@@ -33,3 +33,19 @@ console.log(superhroes);
 superhroes.forEach((hero) => {
     console.log(hero);
  });
+
+ const dogs = [
+     '강아지',
+     '레베카',
+     '멍멍이',
+     '뭉뭉이'
+ ]
+
+
+//  for(let i = 0; i < dogs.length; i++){
+//      console.log(dogs[i]);
+//  }
+
+dogs.forEach(dog => {
+    console.log(dog);
+})
