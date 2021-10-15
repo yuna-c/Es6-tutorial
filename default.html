@@ -489,6 +489,355 @@ const extracted = {
 console.log(extracted);
             </code>
         </pre>
+
+        <div class="code-info">
+            <h2><strong>spread 연산자</strong></h2>
+            <ul class="code-list">
+                <li>...</li>
+                <li>객체 혹은 배열을 펼침</li>
+                <li><a href="grammar/example16.js" target="_blank">spread 객체</a></li>
+                <li><a href="grammar/example17.js" target="_blank">spread 배열</a></li>
+                <li><a href="grammar/example21.js" target="_blank">spread 함수 인자</a></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+//spread : 펼치다, 퍼뜨리다
+
+// 방법1 spread 연산자 : 기존 객체를 복사하고 속성을 추가할 떄 사용
+const slime = {
+    name : '슬라임',
+};
+
+const cuteSlime = {
+    // name : '슬라임',
+    ...slime,
+    attribute : 'cute'
+};
+
+const purpleCuteSlime = {
+    // name : '슬라임',
+    // attribute : 'cute',
+    ...cuteSlime,
+    color : 'purple'
+};
+
+const greenCuteSlime = {
+    color : 'green',
+    ...purpleCuteSlime,
+    color : 'green'
+}
+
+// 방법2
+// const slime = {
+//     name : '슬라임',
+// };
+
+// const cuteSlime = slime;
+// cuteSlime.attribute = 'cute';
+
+// const purpleCuteSlime = cuteSlime;
+// purpleCuteSlime.color = 'purple';
+
+const { name , attribute , color } = purpleCuteSlime;
+
+
+const extracted = {
+    name,
+    attribute,
+    color
+}
+console.log(extracted);
+
+
+
+console.log(slime);
+console.log(cuteSlime);
+console.log(purpleCuteSlime);
+console.log(greenCuteSlime);
+
+console.log(slime === cuteSlime);
+
+
+
+
+const deepObject = {
+    state : {
+        information : {
+            mama : 'yuna',
+            length : [1, 2, 3, 4, 5],
+        }
+    },
+    value : 5
+}
+
+const {
+    state : {
+        information : {
+            mama, length: [first, second, third]
+        }
+    },
+    value
+} = deepObject;
+
+const extract = {
+    mama,
+    //length,
+    first, second, third,
+    value
+}
+console.log(extract);
+
+
+// 배열 spread
+const animals = ['개', '고양이', '참새'];
+const anotherAnimals = [ ...animals, '다람쥐'];
+const autheorAnimals = anotherAnimals.concat('비둘기');
+
+console.log(animals);
+console.log(anotherAnimals);
+console.log(autheorAnimals);
+console.log(animals === anotherAnimals);
+
+
+const numbers = [1, 2, 3, 4, 5];
+const spreadNumbers = [...numbers, 1000, ...numbers];
+console.log(numbers);
+console.log(spreadNumbers);
+            </code>
+        </pre>
+
+        <div class="code-info">
+            <h2><strong>rest</strong></h2>
+            <ul class="code-list">
+                <li>객체 배열, 함수의 파라미터에서 사용 가능</li>
+                <li><a href="grammar/example18.js" target="_blank">rest 객체</a></li>
+                <li><a href="grammar/example19.js" target="_blank">rest 배열</a></li>
+                <li><a href="grammar/example20.js" target="_blank">rest 함수 파라미터</a></li>
+                <li><a href="grammar/example22.js" target="_blank">퀴즈</a></li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+// rest
+
+const purpleCuteSlime = {
+    name : 'slime',
+    attribute : 'cute',
+    color : 'purple'
+};
+
+const { color, ...cuteSlime/*rest*/ } = purpleCuteSlime;
+console.log(color);
+
+//rest 를 사용할때 이름을 다르게 해도된다 ex cuteSlime
+// console.log(rest);
+console.log(cuteSlime);
+
+const { attribute, ...slime} = cuteSlime;
+console.log(cuteSlime);
+console.log(slime);
+
+// spread : 객체나 배열 안에 다른 객체를 퍼뜨리는 역할
+// rest : 퍼져있는 것들을 다시 모아오는 역할
+
+
+const numbers = [0, 1, 2, 3, 4, 5, 6];
+
+// 비구조화 할당
+const [one, two, ...Arest] = numbers; 
+console.log(one);
+console.log(two);
+console.log(Arest);
+
+// const [...rest, last] = numbers; 이렇게는 못씀
+// 배열에서의 rest는 맨 마지막에 쓰임
+
+
+
+
+// 파라미터에 넣어준 모든 값들을 합해주는 함수 만들기
+// function sum(a, b, c, d, e, f, g){
+function sum(...rest){ //모든 파라미터를 배열로 받아온다
+    //return a + b + c + d + e + f + g;
+    /*
+    let result = 0;
+    if(a){
+        result += a;
+    }
+    if(b) result += b;
+    if(c) result += c;
+    if(d) result += d;
+    if(e) result += e;
+    if(f) result += f;
+    if(g) result += g;
+    return result;
+    */
+    // if(a){
+    //     result += a;
+    // }
+
+    //이런식으로 파라미터를 받아 하나하나 인자를 더해줘야 하지만,
+    //reduce를 통해 합산해준다
+    return rest.reduce((acc, current) => acc + current, 0);
+}
+
+// 숫자 하나만 빠져도 연산이 안되기 때문에
+console.log(sum(1,2,3,4,5,6,7,8,9,10));
+
+
+
+
+
+function sum(...rest) {
+    return rest.reduce((acc, current) => acc + current, 0);
+}
+
+const number = [1,2,3,4,5,6,7,8,9];
+console.log(sum(...number));
+
+function substact(x, y) { //x,y는 파라미터 : 함수에서 받아오는 값
+    return x - y;
+}
+
+const numbers = [1, 2];
+const result = substact(...numbers); //1,3 인자 : 함수를 사용할 떄 넣어주는 값
+//const result = substact(numbers[0], numbers[1]) =  ...number ( spread )
+console.log(result);
+
+
+
+
+function max(...numbers){
+    // return 0;
+    // acc가 current보다 크면 그 결과값을 current로 하고 
+    // 그렇지 않으면 acc가 결과값
+
+    return numbers.reduce(
+        //(acc, current) => (current < acc ? current : acc), //제일 작은 값일 때
+        (acc, current) => (current > acc ? current : acc),
+        numbers[0]
+    );
+}
+
+const result = max(1, 2, 3, 4, 5, 6, 7, 8, 9, 20);
+console.log(result);
+            </code>
+        </pre>
+
+        <div class="code-info">
+            <h2><strong>scope</strong></h2>
+            <ul class="code-list">
+                <li>스코프 : 변수, 함수 선언시 해당 변수, 함수가 어디서 어디까지 유효한지의 범위</li>
+                <li><a href="grammar/example23.js" target="_blank">global</a></li>
+                <li><a href="grammar/example24.js" target="_blank">function</a></li>
+                <li><a href="grammar/example25.js" target="_blank">block</a></li>
+                <li><a href="grammar/example26.js" target="_blank">hoisting</a></li>
+                <li>호이스팅 : 아직 선언되지 않은 함수, 변수를 끌어올려서 사용할 수 있는 작동 방식</li>
+            </ul>
+        </div>
+        <pre>
+            <code>
+// global scope 전역
+
+const value = 'hello'; // global scope
+
+function myFunction () {
+    console.log('myFunction: ');
+    console.log(value);
+}
+
+function otherFunction () { //함수형 스코프
+    console.log('otherFunction: ');
+    const value = 'bye!';
+    console.log(value);
+}
+
+myFunction();
+otherFunction();
+
+console.log('global scope: ');
+console.log(value);
+
+
+
+
+// function scope : 특정 함수 범위내에서만 사용이 가능하다
+const value = 'hello';
+
+function myFunction() {
+    const value = 'bye';
+    const anotherValue = 'world';
+
+    function functionInside() {
+        console.log('function Inside :');
+        console.log(value);
+        console.log(anotherValue);
+    }
+    functionInside();
+}
+
+myFunction();
+console.log('global Scope :')
+console.log(value);
+// console.log(anotherValue);
+
+
+
+
+// block scope : if, for, switch문 같은 것을 작성할 때 중괄호 내부에서만 사용
+
+
+const value = 'hello';
+
+function myFunction() {
+
+    const value = 'goodbye';
+    if (true) {
+        const value = 'world';
+        console.log('block scope :');
+        console.log(value);
+    }
+    console.log('function scope :');
+    console.log(value);
+}
+
+myFunction();
+console.log('global Scope :')
+console.log(value);
+// console.log(anotherValue);
+
+
+
+//호이스팅 : 아직 선언되지 않은 함수, 변수를 끌어올려서 사용할 수 있는 작동 방식
+
+
+myFunction(); // 선언이 되기 전에 호출 ~웬만하면 피해라
+
+function myFunction() {
+    console.log('hello world');
+};
+
+
+// 변수의(var) 호이스팅 , const,let은 호이스팅 X
+var number;
+console.log(number);
+number = 2;
+console.log(number);
+
+
+function fn(){
+    console.log(a);
+    let a = 2;
+}
+fn();
+
+
+
+            </code>
+        </pre>
+
+
 <!-- 
     <div class="code-info">
         <h2><strong></strong></h2>

@@ -27,3 +27,11 @@ const value = condition1
     : 'foo'
 
 console.log(value);
+
+const array1 = [];
+let test1 = '';
+
+let text1 = array1.length === 0 
+    ? '비었다'
+    : '안비었다'
+console.log(text1);
