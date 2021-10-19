@@ -25,11 +25,30 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <style>
+                        form { margin:50px 0; box-sizing:border-box; }
+                        .value-button { width:40px; height:40px; line-height:38px; margin:0; display:inline-block; background:#eee; border:1px solid #ddd; text-align:center; box-sizing:border-box; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+                        .value-button:hover { cursor:pointer; }
+                        form #decrease { margin-right:-4px; border-radius:8px 0 0 8px; }
+                        form #increase { margin-left:-4px; border-radius:0 8px 8px 0; }
+                        form #input-wrap { margin:0; padding:0; }
+                        input#number1 { width:40px; height:40px; margin:0; margin-top:2px; text-align:center; border:none; border-top:1px solid #ddd; border-bottom:1px solid #ddd; box-sizing:border-box; }
+                        input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { margin:0; -webkit-appearance:none; }
+                    </style>
+                    <form>
+                        <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                        <input type="Number" id="number1" value="0" />
+                        <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+                    </form>
+                </li>
                 <li><a href="example/example1.js" target="_blank">getElementById</a></li>
                 <li><a href="example/example2.js" target="_blank">querySelector</a></li>
+                <li><a href="example/example4.js" target="_blank">codepen</a></li>
             </ul>
         </div>
-        <script src="./example/example2.js"></script>
+        <script src="./example/example1.js"></script>
+        <script src="./example/example4.js"></script>
         <pre>
             <code>
 const number = document.getElementById('number');
@@ -80,6 +99,23 @@ decrease.onclick = () => {
     // console.log('decrease가 클릭됨');
     const current = parseInt(number.innerText, 10);
     number.innerText = current - 1;
+}
+
+
+
+function increaseValue() {
+    var value = parseInt(document.getElementById('number1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number1').value = value;
+  }
+
+function decreaseValue() {
+var value = parseInt(document.getElementById('number1').value, 10);
+value = isNaN(value) ? 0 : value;
+value < 1 ? value = 1 : '';
+value--;
+document.getElementById('number1').value = value;
 }
             </code>
         </pre>
